@@ -18,7 +18,11 @@ app.use((req, res, next) => {
     next();
 });
 // Enable CORS for all routes
-app.use(cors());
+app.use(
+    cors({
+        origin: 'https://angular-nodejs-realtime-frontend.vercel.app',
+    })
+);
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -33,12 +37,6 @@ app.use('/', require('./routes/auth'));
 app.use('/chat', authenticate, require('./routes/chat'));
 app.use('/user', authenticate, require('./routes/user'));
 app.use('/profile', authenticate, require('./routes/profile'));
-
-app.use('/', async (req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello, world!');
-});
 
 initializeSocket(server);
 
