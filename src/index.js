@@ -34,6 +34,12 @@ app.use('/chat', authenticate, require('./routes/chat'));
 app.use('/user', authenticate, require('./routes/user'));
 app.use('/profile', authenticate, require('./routes/profile'));
 
+app.use('/', async (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello, world!');
+});
+
 initializeSocket(server);
 
 server.listen(3000, () => {
