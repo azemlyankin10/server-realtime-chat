@@ -2,8 +2,8 @@ const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const authenticate = require('./utils/authenticate');
-const initializeSocket = require('./socket/socket');
+const authenticate = require('./src/utils/authenticate');
+const initializeSocket = require('./src/socket/socket');
 
 const app = express();
 // Allow cross-origin requests from http://localhost:4200
@@ -36,10 +36,10 @@ mongoose
     .then(() => console.log('Connected to database'))
     .catch((error) => console.error('Error connecting to database', error));
 
-app.use('/', require('./routes/auth'));
-app.use('/chat', authenticate, require('./routes/chat'));
-app.use('/user', authenticate, require('./routes/user'));
-app.use('/profile', authenticate, require('./routes/profile'));
+app.use('/', require('./src/routes/auth'));
+app.use('/chat', authenticate, require('./src/routes/chat'));
+app.use('/user', authenticate, require('./src/routes/user'));
+app.use('/profile', authenticate, require('./src/routes/profile'));
 
 initializeSocket(server);
 
