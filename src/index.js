@@ -26,7 +26,7 @@ app.use(express.static('public'));
 const server = http.createServer(app);
 
 app.get('/', (req, res) => {
-    res.send('hello world');
+    res.send('<html><body><h1>Hello World!</h1></body></html>');
 });
 
 mongoose
