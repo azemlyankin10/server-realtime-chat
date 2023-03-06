@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
@@ -30,7 +30,10 @@ app.get('/', (req, res) => {
 });
 
 mongoose
-    .connect(process.env.DB_URI, { useNewUrlParser: true })
+    .connect(
+        'mongodb+srv://forazemlyankin:EdyqkyiIgtbDOCEx@cluster0.pprqtk6.mongodb.net/chat',
+        { useNewUrlParser: true }
+    )
     .then(() => console.log('Connected to database'))
     .catch((error) => console.error('Error connecting to database', error));
 
