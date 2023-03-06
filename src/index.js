@@ -9,10 +9,7 @@ const initializeSocket = require('./socket/socket');
 const app = express();
 // Allow cross-origin requests from http://localhost:4200
 app.use((req, res, next) => {
-    res.setHeader(
-        'Access-Control-Allow-Origin',
-        'https://angular-nodejs-realtime-frontend.vercel.app'
-    );
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
@@ -27,6 +24,10 @@ app.use(
 app.use(express.json());
 app.use(express.static('public'));
 const server = http.createServer(app);
+
+app.get('/', (req, res) => {
+    res.send('hello world');
+});
 
 mongoose
     .connect(process.env.DB_URI, { useNewUrlParser: true })
